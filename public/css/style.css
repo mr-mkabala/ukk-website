@@ -10,12 +10,12 @@ p {
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.5;
-  margin-bottom: .75rem;
+  margin-bottom: .5rem;
   text-align: justify;
 }
 
 footer {
-  background-color: #171717;
+  background-color: #1D1D1D;
   color: #EDF0F0;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -29,7 +29,10 @@ footer {
 }
 
 footer p {
-  padding: 2rem 0;
+  line-height: 1;
+  margin-bottom: 0;
+  padding: 1rem 0;
+  text-align: center;
 }
 
 .footer-link {
@@ -107,6 +110,13 @@ footer p {
   width: 100%;
 }
 
+@media (max-aspect-ratio: 4 / 3) {
+  .landing-page {
+    background-size: auto 100vh;
+    background-position: center center;
+  }
+}
+
 .landing-page-container {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -130,9 +140,12 @@ footer p {
 }
 
 .landing-page-title {
+  border-bottom: 5px solid #A47E1B;
   font-size: 4rem;
   font-weight: 600;
   letter-spacing: -4px;
+  margin-bottom: 2rem;
+  text-align: center;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -143,6 +156,7 @@ footer p {
   font-size: 2.5rem;
   font-weight: 400;
   line-height: 1;
+  text-align: center;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -190,7 +204,7 @@ footer p {
 }
 
 .grid-text {
-  padding: 3rem;
+  padding: 1.5rem 3rem;
 }
 
 .grid-header {
@@ -201,9 +215,17 @@ footer p {
   left: 50%;
   padding-bottom: .5rem;
   position: absolute;
+  text-align: center;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .grid-btn {
@@ -220,6 +242,35 @@ footer p {
   text-decoration: none;
 }
 
+@media screen and (max-width: 1199px) {
+  .grid-btn {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: .5rem;
+    padding: .5rem 2rem;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .grid-normal,
+  .grid-reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .grid-img-cont,
+  .grid-text {
+    width: 100%;
+  }
+  .grid-img-cont {
+    height: 25vh;
+  }
+  .grid-text {
+    padding: 7.5rem 15%;
+  }
+}
+
 .contact {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -230,13 +281,13 @@ footer p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #171717;
+  background-color: #1D1D1D;
   color: #EDF0F0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
   width: 100%;
 }
 
@@ -244,18 +295,13 @@ footer p {
   font-size: 2rem;
   font-weight: 400;
   margin: 5rem 0 0;
+  text-align: center;
 }
 
 .contact-cont {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   padding: 0 15%;
   width: 100%;
 }
@@ -317,7 +363,7 @@ footer p {
 }
 
 .contact-btn {
-  background-color: #171717;
+  background-color: #1D1D1D;
   border: 2px solid #A47E1B;
   color: #A47E1B;
   display: inline-block;
@@ -326,5 +372,245 @@ footer p {
   margin-top: 1rem;
   padding: .75rem 2rem;
   text-decoration: none;
+}
+
+@media only screen and (max-width: 991px) {
+  .contact-header {
+    margin-bottom: 2rem;
+  }
+  .contact-cont {
+    padding: 0 10%;
+  }
+  .contact-block {
+    padding: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .contact-cont {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 10%;
+    width: 100%;
+  }
+  .contact-block {
+    width: 100%;
+  }
+  .contact-btn {
+    margin: 2rem 0;
+    width: 100%;
+  }
+}
+
+.about {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("/images/about-2.png");
+  background-size: 100% auto;
+  height: 100vh;
+  width: 100%;
+}
+
+.about-header {
+  border-bottom: 4px solid #A47E1B;
+  color: #EDF0F0;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.about-content {
+  padding: 7.5rem 15%;
+  width: 100%;
+}
+
+.about-content ul {
+  list-style-image: url("/images/svg/list-diamond.svg");
+  list-style-position: inside;
+  margin: 1rem;
+}
+
+.about-content ul li {
+  font-weight: 300;
+  padding: .5rem 0;
+}
+
+@media (max-aspect-ratio: 4 / 3) {
+  .about {
+    background-size: auto 100vh;
+    background-position: center center;
+  }
+}
+
+.services {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("/images/services-2.png");
+  background-size: 100% auto;
+  height: 100vh;
+  width: 100%;
+}
+
+.services-header {
+  border-bottom: 4px solid #A47E1B;
+  color: #EDF0F0;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.services-content {
+  padding: 7.5rem 15%;
+  width: 100%;
+}
+
+.services-content ul {
+  list-style-image: url("/images/svg/list-diamond.svg");
+  list-style-position: inside;
+  margin: 1rem;
+}
+
+.services-content ul li {
+  font-weight: 300;
+  padding: .5rem 0;
+}
+
+@media (max-aspect-ratio: 4 / 3) {
+  .services {
+    background-size: auto 100vh;
+    background-position: center center;
+  }
+}
+
+.pricing {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("/images/pricing-2.png");
+  background-size: 100% auto;
+  height: 100vh;
+  width: 100%;
+}
+
+.pricing-header {
+  border-bottom: 4px solid #A47E1B;
+  color: #EDF0F0;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.pricing-content {
+  padding: 7.5rem 15%;
+  width: 100%;
+}
+
+.pricing-content ul {
+  list-style-image: url("/images/svg/list-diamond.svg");
+  list-style-position: inside;
+  margin: 1rem;
+}
+
+.pricing-content ul li {
+  font-weight: 300;
+  padding: .5rem 0;
+}
+
+@media (max-aspect-ratio: 4 / 3) {
+  .pricing {
+    background-size: auto 100vh;
+    background-position: center center;
+  }
+}
+
+.contact-site {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("/images/landing-page-background.png");
+  background-size: 100% auto;
+  height: 100vh;
+  width: 100%;
+}
+
+.contact-site-header {
+  border-bottom: 4px solid #A47E1B;
+  color: #EDF0F0;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.contact-site-content {
+  padding: 7.5rem 15%;
+  width: 100%;
+}
+
+.contact-site-content ul {
+  list-style-image: url("/images/svg/list-diamond.svg");
+  list-style-position: inside;
+  margin: 1rem;
+}
+
+.contact-site-content ul li {
+  font-weight: 300;
+  padding: .5rem 0;
+}
+
+@media (max-aspect-ratio: 4 / 3) {
+  .contact-site {
+    background-size: auto 100vh;
+    background-position: center center;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  p {
+    line-height: 1.3;
+  }
 }
 /*# sourceMappingURL=style.css.map */

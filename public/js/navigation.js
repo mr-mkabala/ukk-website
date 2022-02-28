@@ -27,7 +27,7 @@ navButton.forEach(item => {
 // Animacje ScrollTrigger dla back-button
 const backButtonTl = gsap.timeline({
     scrollTrigger: {
-        trigger: '.landing-page',
+        trigger: '.starter',
         start: '75%',
         end: '100%',
         scrub: true
@@ -59,4 +59,13 @@ footerLink.addEventListener('mouseenter', () => {
 });
 footerLink.addEventListener('mouseleave', () => {
     gsap.fromTo(footerLink, {color: '#A47E1B'}, {color: '#EDF0F0', ease: 'power2.out', duration: 0.5});
+});
+
+// Animacja przycisku wysyłania formularza
+const contactBtn = document.querySelector('.contact-btn');
+contactBtn.addEventListener('mouseenter', () => {
+    gsap.fromTo(contactBtn, {backgroundColor: '#1D1D1D', color: '#A47E1B'}, {color: '#EDF0F0', backgroundColor: '#A47E1B', duration: 0.5});
+});
+contactBtn.addEventListener('mouseleave', () => {
+    gsap.fromTo(contactBtn, {color: '#EDF0F0', backgroundColor: '#A47E1B'}, {backgroundColor: '#1D1D1D', color: '#A47E1B', duration: 0.5});
 });

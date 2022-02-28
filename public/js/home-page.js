@@ -12,33 +12,27 @@ const landingPageLeaveTl = gsap.timeline({
 landingPageLeaveTl.fromTo('.landing-page-container', {opacity: 1}, {opacity: 0});
 landingPageLeaveTl.fromTo('.landing-page-arrow', {opacity: 1}, {opacity: 0}, '<');
 
-// Animacja przycisków 'dowiedz się więcej'
-const gridBtn = document.querySelectorAll('.grid-btn');
-gridBtn.forEach(btn => {
-    btn.addEventListener('mouseover', () => {
-        gsap.to(btn, {color: '#EDF0F0', backgroundColor: '#A47E1B', duration: 0.5});
-    });
-    btn.addEventListener('mouseleave', () => {
-        gsap.to(btn, {color: '#A47E1B', backgroundColor: '#EDF0F0', duration: 0.5});
-    });
-});
-
 // Animacje ScrollTrigger dla kolejnych sekcji grid (enter)
 const grid = document.querySelectorAll('.grid');
-grid.forEach((item, index) => {
+const screenWidth = document.body.clientWidth;
+const enterStart = screenWidth < 1200 ? '-100%' : '-75%';
+const enterEnd = screenWidth < 1200 ? '-50%' : '-25%';
+const leaveStart = screenWidth < 1200 ? '0%' : '25%';
+const leaveEnd = screenWidth < 1200 ? '50%' : '75%';
+grid.forEach(item => {
     const gridEnterTl = gsap.timeline({
         scrollTrigger: {
             trigger: item,
-            start: '-75%',
-            end: '-25%',
+            start: enterStart,
+            end: enterEnd,
             scrub: true
         }
     });
     const gridLeaveTl = gsap.timeline({
         scrollTrigger: {
             trigger: item,
-            start: '25%',
-            end: '75%',
+            start: leaveStart,
+            end: leaveEnd,
             scrub: true
         }
     });
@@ -52,6 +46,17 @@ grid.forEach((item, index) => {
     gridLeaveTl.to(item.querySelector('.grid-header'), {scale: 0.9, opacity: 0});
     gridLeaveTl.to(item.querySelector('.grid-img'), {scale: 1.1}, '<');
     gridLeaveTl.to(item.querySelector('.grid-text'), {opacity: 0, scale: 0.95}, '<50%');
+});
+
+// Animacja przycisków 'dowiedz się więcej'
+const gridBtn = document.querySelectorAll('.grid-btn');
+gridBtn.forEach(btn => {
+    btn.addEventListener('mouseover', () => {
+        gsap.to(btn, {color: '#EDF0F0', backgroundColor: '#A47E1B', duration: 0.5});
+    });
+    btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {color: '#A47E1B', backgroundColor: '#EDF0F0', duration: 0.5});
+    });
 });
 
 // ScrollTo dla strzałki w dół na landing-page
@@ -68,15 +73,6 @@ landingPageArrow.addEventListener('mouseleave', () => {
     gsap.fromTo(landingPageArrow, {scale: 1.2}, {scale: 1, ease: 'power2.out', duration: 0.5});
 });
 
-// Animacja przycisku wysyłania formularza
-const contactBtn = document.querySelector('.contact-btn');
-contactBtn.addEventListener('mouseenter', () => {
-    gsap.fromTo(contactBtn, {backgroundColor: '#171717', color: '#A47E1B'}, {color: '#EDF0F0', backgroundColor: '#A47E1B', duration: 0.5});
-});
-contactBtn.addEventListener('mouseleave', () => {
-    gsap.fromTo(contactBtn, {color: '#EDF0F0', backgroundColor: '#A47E1B'}, {backgroundColor: '#171717', color: '#A47E1B', duration: 0.5});
-});
-
 // ScrollTo dla rozwijanego menu
 const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach((link, index) => {
@@ -84,14 +80,19 @@ navLinks.forEach((link, index) => {
     let sectionOffsetY = 0;
     link.addEventListener('click', (event) => {
         event.preventDefault();
-        gsap.to(window, 1, {scrollTo: {y: sectionScrolled, offsetY: sectionOffsetY}});
+        navTl.to(window, 1, {scrollTo: {y: sectionScrolled, offsetY: sectionOffsetY}});
+        navTl.to('.nav-item', {opacity: 0, stagger: -0.05}, '<');
+        navTl.to('.exit', {scale: 0, stagger: -0.05}, '<');
+        navTl.to(nav, {height: 50}, '<50%');
+        navTl.to(nav, {width: 50});
+        navTl.to('.drop', {scale: 1}, '<');
+        nav.classList.toggle('collapsed');
     });
 });
 
 // Animacja przy otwieraniu strony
 const landingPageTitle = document.querySelector('.landing-page-title');
 const landingPageSubtitle = document.querySelectorAll('.landing-page-subtitle');
-// const nav = document.querySelector('.nav');
 const loadPageTl = gsap.timeline({defaults: {duration: 0.5, ease: 'power2.out'}});
 
 gsap.set(landingPageTitle, {opacity: 0});
@@ -102,4 +103,4 @@ gsap.set(nav, {opacity: 0});
 loadPageTl.to(landingPageTitle, {opacity: 1, delay: 0.5});
 loadPageTl.to(landingPageSubtitle, {opacity: 1, duration: 0.5, stagger: 0.5});
 loadPageTl.to(landingPageArrow, {opacity: 1});
-loadPageTl.to(nav, {opacity: 1});
+loadPageTl.to(nav, {opacity: 1}, '<');
